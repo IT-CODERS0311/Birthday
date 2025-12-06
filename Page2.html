@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mission Birthday – Page 2</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f5c8f2, #e5bdf8, #f6d4ff);
+    font-family: 'Great Vibes', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    animation: bgmove 10s ease-in-out infinite alternate;
+  }
+
+  @keyframes bgmove {
+    0% {background-position: left;}
+    100% {background-position: right;}
+  }
+
+  .poem-container {
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8);
+    width: 80%;
+    max-width: 700px;
+    animation: fadeIn 3s ease forwards;
+  }
+
+  .poem-container h2 {
+    font-size: 2.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .poem-container p {
+    font-size: 1.5rem;
+    line-height: 2.2rem;
+    white-space: pre-line;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  /* Floating hearts */
+  .heart {
+    position: absolute;
+    color: #ffb6c1;
+    font-size: 22px;
+    animation: floatUp linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(100vh) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-10vh) scale(1.3);
+      opacity: 0;
+    }
+  }
+  
+  .next-btn {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.next-btn a {
+  display: inline-block;
+  background: linear-gradient(90deg, #d8b4fe, #f9a8d4);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(217, 119, 255, 0.6);
+  transition: 0.3s;
+}
+
+.next-btn a:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(236, 72, 153, 0.8);
+}
+</style>
+</head>
+<body>
+
+<div class="poem-container">
+  <h2>💜 For My special one 💜</h2>
+  <p>
+When the nights get quiet and stars softly gleam,  
+You walk into my thought like a sweet little dream.  
+Every heartbeat hums your name so slow.  
+You are that calm in my chaos, that warm gentle glow.  
+
+Your smile feels like sunshine wrapped in rain.  
+A little chaos, a little peace, my heart's sweetest pain.  
+And today is all your day, the world feels new,  
+Because every little thing somehow reminds me of you.  
+
+May your path shine bright with love and cheer,  
+For someone silently wishing you happiness all the year.  
+  </p>
+  <p style="margin-top:1.5rem; font-size:1.3rem;">— With all my love 💜</p>
+</div>
+<div class="next-btn">
+  <a href="Page3.html">Next ➜</a>
+</div>
+
+<script>
+  // Generate floating hearts
+  const colors = ["#ff99cc","#ffb6c1","#ff66b2","#ffcce0","#ff99ff"];
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "&#10084;";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+    heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+    heart.style.animationDuration = (Math.random() * 4 + 4) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+  }
+  setInterval(createHeart, 500);
+</script>
+
+<!-- Google font for cursive text -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+</body>
+</html>

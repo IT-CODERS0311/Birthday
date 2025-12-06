@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Gifts 🎁</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #f7d0f7, #c9e4ff);
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding-top: 30px;
+  }
+
+  h1 {
+    color: #7a0dcf;
+    font-size: 2.3em;
+    font-weight: bold;
+  }
+
+  h2 {
+    color: #5a5a5a;
+    margin-top: 8px;
+    font-size: 1.1em;
+    font-style: italic;
+  }
+
+  .gifts {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+
+  .box {
+    width: 160px;
+    height: 160px;
+    background: #f5b5ff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .box:hover { transform: scale(1.07); }
+
+  .gift-content {
+    display: none;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #fff;
+    border-radius: 15px;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .gift-content p {
+    color: #333;
+    font-weight: 600;
+  }
+
+  .gift-content img {
+    width: 90%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 8px;
+  }
+
+  /* Animated Table Tennis Ball */
+  .table-tennis {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: url('https://cdn.pixabay.com/photo/2017/09/04/19/53/ping-pong-2713569_1280.jpg') center/cover no-repeat;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .ball {
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(white, #ccc);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    animation: bounce 1.3s infinite ease-in-out;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(70px, -40px); }
+  }
+
+  /* Next Button */
+  .next-btn {
+    margin-top: 60px;
+    background-color: #cba8ff;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-size: 1.1em;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .next-btn:hover {
+    background-color: #b585ff;
+  }
+</style>
+</head>
+<body>
+
+  <h1>🎁 Tap to open gifts</h1>
+  <h2>Every box hides a piece of your world 💜</h2>
+
+  <div class="gifts">
+
+    <!-- Dream Hobby -->
+    <div class="box" onclick="openGift(this)">
+      🎁
+      <div class="gift-content">
+        <p>Dream Hobby: Table Tennis 🏓</p>
+        <div class="table-tennis">
+          <div class="ball"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Favourite Food -->
+    <div class="box" onclick="openGift(this)">
+      🎁
+      <div class="gift-content">
+        <p>Favourite Food: Burger 🍔</p>
+        <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg" alt="Burger">
+      </div>
+    </div>
+
+    <!-- Hug -->
+    <div class="box" onclick="openGift(this)">
+      🎁
+      <div class="gift-content">
+        <p>A Warm Hug 🤗</p>
+        <img src="https://cdn.pixabay.com/photo/2021/02/23/07/58/couple-6041222_1280.png" alt="for comfort and peace">
+      </div>
+    </div>
+
+    <!-- Dream Destination -->
+    <div class="box" onclick="openGift(this)">
+      🎁
+      <div class="gift-content">
+        <p>Dream Destination: Himalayas 🏔️</p>
+        <img src="https://cdn.pixabay.com/photo/2020/04/25/08/57/himalayas-5091632_1280.jpg" alt="feel the softness of air at the peak of himalayas ">
+      </div>
+    </div>
+
+  </div>
+
+  <button class="next-btn" onclick="window.location.href='Page6.html'">Next ➜</button>
+
+  <script>
+    function openGift(box) {
+      const content = box.querySelector('.gift-content');
+      const isOpen = content.style.display === 'flex';
+      document.querySelectorAll('.gift-content').forEach(c => c.style.display = 'none');
+      content.style.display = isOpen ? 'none' : 'flex';
+    }
+  </script>
+
+</body>
+</html>

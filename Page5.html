@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mission Birthday — Page 3 (Gifts)</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --lav1: #f5c8f2;
+    --lav2: #f3d7fb;
+    --pink: #ffb6d8;
+    --accent:#b35aa0;
+  }
+  html,body{height:100%; margin:0; font-family: 'Poppins', system-ui, -apple-system, sans-serif; -webkit-font-smoothing:antialiased;}
+  body{
+    background: linear-gradient(135deg, #f0e6fb 0%, #fff0fb 40%, #fff9f0 100%);
+    min-height:100vh;
+    display:flex; align-items:center; justify-content:center;
+    padding:28px;
+    overflow:hidden;
+    position:relative;
+  }
+
+  /* floating hearts */
+  .heart-float { position: absolute; pointer-events:none; opacity:0.18; filter: blur(0.5px); }
+  .heart-float.big{opacity:0.06;}
+  /* heading */
+  .container{ width:100%; max-width:1100px; text-align:center; position:relative; z-index:2; }
+  .heading {
+    font-family: 'Great Vibes', cursive;
+    font-size:2.6rem;
+    color:#6b1f64;
+    margin-bottom:6px;
+    text-shadow: 0 6px 18px rgba(107,31,100,0.14);
+  }
+  .sub { color:#7b3e80; margin-bottom:18px; font-weight:600; }
+
+  /* grid */
+  .grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:18px; align-items:stretch; }
+  @media (max-width:900px){ .grid{ grid-template-columns:repeat(2, 1fr);} }
+  @media (max-width:520px){ .grid{ grid-template-columns:1fr; } .heading{font-size:2.2rem;} }
+
+  /* gift wrapper as a present */
+  .gift {
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,245,255,0.92));
+    border-radius:16px;
+    box-shadow: 0 18px 40px rgba(139,53,128,0.08);
+    padding:18px;
+    position:relative;
+    overflow:visible;
+    cursor:pointer;
+    border: 1px solid rgba(255,255,255,0.7);
+    transition: transform 300ms cubic-bezier(.2,.9,.3,1), box-shadow 300ms;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    min-height:220px;
+  }
+  .gift:focus { outline: 3px solid rgba(179,90,160,0.12); }
+  .gift:hover{ transform: translateY(-6px); box-shadow: 0 28px 60px rgba(139,53,128,0.12); }
+
+  /* ribbon */
+  .ribbon {
+    position:absolute; left:50%; transform:translateX(-50%); top:10px;
+    width:66%; height:18px; background:linear-gradient(90deg,#ffcee8,#ffd8f4); border-radius:8px;
+    box-shadow:0 6px 14px rgba(179,90,160,0.06);
+  }
+  .ribbon:after{
+    content:''; position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+    width:22px; height:22px; background:linear-gradient(180deg,#ffb6d8,#ff8fc7); border-radius:6px;
+    box-shadow: 0 6px 10px rgba(179,90,160,0.08);
+  }
+
+  .box-top {
+    width:90%; height:40%; background: linear-gradient(180deg,#fff,#fff0); border-radius:10px;
+    display:flex; align-items:center; justify-content:center; margin-top:26px;
+  }
+
+  .label { margin-top:12px; font-weight:700; color:#4f2250; font-size:1rem; }
+  .caption { margin-top:8px; font-size:0.9rem; color:#6f3b6e; opacity:0.95; }
+
+  /* opened reveal area */
+  .reveal {
+    width:100%; border-radius:12px; margin-top:12px; padding:12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(249,240,250,0.9));
+    box-shadow: 0 8px 20px rgba(123,31,167,0.04);
+    transform-origin: top center;
+    transition: all 420ms cubic-bezier(.2,.9,.3,1);
+    opacity:0; max-height:0; overflow:hidden;
+  }
+  .gift.open .reveal { opacity:1; max-height:600px; }
+
+  /* image inside reveal */
+  .reveal img { max-width:100%; height:auto; border-radius:10px; display:block; margin:0 auto; box-shadow: 0 10px 26px rgba(115,35,95,0.08); }
+
+  /* small message */
+  .reveal .msg { margin-top:10px; color:#5a2b56; font-weight:600; }
+
+  /* little pop glow when open */
+  .gift.open { box-shadow: 0 36px 80px rgba(139,53,128,0.14); transform: scale(1.01); }
+
+  /* decorative sparkle dots */
+  .sparkle {
+    pointer-events:none;
+    position:absolute; width:6px; height:6px; background:rgba(255,255,255,0.95);
+    border-radius:50%; filter:blur(0.2px); opacity:0.9;
+    box-shadow:0 0 12px rgba(255,230,255,0.7);
+    animation: twinkle 5s infinite ease-in-out;
+  }
+  @keyframes twinkle {
+    0%{ transform: translateY(0) scale(1); opacity:0.9;}
+    50%{ transform: translateY(-8px) scale(1.2); opacity:0.5;}
+    100%{ transform: translateY(0) scale(1); opacity:0.9;}
+  }
+
+  /* small heart burst */
+  .heart-burst { position:absolute; font-size:16px; pointer-events:none; opacity:0.9; transform:translateY(0); transition: transform 900ms ease-out, opacity 900ms; }
+
+  /* tap note */
+  .note { margin-top:20px; display:inline-block; padding:8px 14px; border-radius:999px; background:linear-gradient(90deg,rgba(255,255,255,0.6),rgba(255,255,255,0.2)); color:#63295a; box-shadow: 0 8px 18px rgba(123,31,167,0.06); font-weight:600; }
+
+</style>
+</head>
+<body>
+
+<!-- decorative floating hearts (background) -->
+<img src="" class="heart-float big" id="heartBg1" aria-hidden="true" style="left:5%; top:10%; width:180px; opacity:0.06;">
+<img src="" class="heart-float" id="heartBg2" aria-hidden="true" style="right:6%; top:30%; width:100px; opacity:0.08;">
+<!-- (These images are optional and for beauty; empty srcs won't show anything.) -->
+
+<div class="container" role="main">
+  <h1 class="heading">Tap to open your gift 🎁🎁🎁🎁</h1>
+  <div class="sub">Tap each wrapped gift to reveal the surprise. They will stay open — enjoy them all! 💝</div>
+
+  <div class="grid" id="giftGrid">
+
+    <!-- Gift 1: Bike (real image from Google -> replace placeholder) -->
+    <div class="gift" tabindex="0" role="button" aria-pressed="false" data-key="bike">
+      <div class="ribbon" aria-hidden="true"></div>
+
+      <div class="box-top" aria-hidden="true">
+        <!-- gift icon (bike) -->
+        <svg width="90" height="60" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g transform="translate(0,10)">
+            <circle cx="40" cy="70" r="20" fill="#ffe6f6" stroke="#d88ad1" stroke-width="4"/>
+            <circle cx="140" cy="70" r="20" fill="#ffe6f6" stroke="#d88ad1" stroke-width="4"/>
+            <rect x="35" y="30" width="90" height="8" rx="4" fill="#f7c8f6"/>
+            <path d="M35 30 q20 -24 60 -16" stroke="#c86aa6" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <path d="M95 30 q18 -12 40 0" stroke="#c86aa6" stroke-width="6" fill="none" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="label">Himalayas</div>
+      <div class="caption">Your dream destination— tap to open</div>
+
+      <div class="reveal" aria-hidden="true">
+        <!-- === REPLACE THE IMAGE URL BELOW with your bike image URL from Google or your hosting.
+             How to replace: On Google Images, right-click the image -> "Open image in new tab" -> copy that tab's URL
+             or upload the image to your project and use the relative path: ./images/bike.jpg === -->
+        <img id="bikeImg" src="REPLACE_WITH_BIKE_IMAGE_URL" alt="Himalayas bike (your favourite)">
+        <div class="msg">A Himalayan-style dream — ready for mountain memories!</div>
+      </div>
+    </div>
+
+    <!-- Gift 2: Burger (real image from Google -> replace placeholder) -->
+    <div class="gift" tabindex="0" role="button" aria-pressed="false" data-key="burger">
+      <div class="ribbon" aria-hidden="true"></div>
+
+      <div class="box-top" aria-hidden="true">
+        <!-- burger icon -->
+        <svg width="90" height="70" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g transform="translate(0,10)">
+            <ellipse cx="100" cy="24" rx="68" ry="18" fill="#ffd7a6" stroke="#ffb86b"/>
+            <rect x="36" y="34" width="128" height="12" rx="6" fill="#ff6b6b"/>
+            <rect x="36" y="46" width="128" height="10" rx="5" fill="#c2ffb1"/>
+            <ellipse cx="100" cy="72" rx="68" ry="18" fill="#ffd7a6" stroke="#ffb86b"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="label">Favourite food </div>
+      <div class="caption">Juicy & cheesy — tap to open</div>
+
+      <div class="reveal" aria-hidden="true">
+        <!-- === REPLACE THE IMAGE URL BELOW with your burger image URL from Google or your hosting.
+             Use a clear, front-facing burger image for best look. === -->
+        <img id="burgerImg" src="REPLACE_WITH_BURGER_IMAGE_URL" alt="Favourite burger">
+        <div class="msg">A hot, juicy burger — just how you love it 🍔</div>
+      </div>
+    </div>
+
+    <!-- Gift 3: One Hug (cartoon boy & girl hugging) -->
+    <div class="gift" tabindex="0" role="button" aria-pressed="false" data-key="hug">
+      <div class="ribbon" aria-hidden="true"></div>
+
+      <div class="box-top" aria-hidden="true">
+        <!-- hugging icon small -->
+        <svg width="80" height="70" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- simple hugging cartoon -->
+          <g transform="translate(10,10)">
+            <circle cx="30" cy="22" r="16" fill="#ffe7b8"/>
+            <circle cx="68" cy="22" r="16" fill="#ffd7c9"/>
+            <rect x="14" y="44" width="36" height="28" rx="8" fill="#ffd6e9"/>
+            <rect x="54" y="44" width="36" height="28" rx="8" fill="#e1d9ff"/>
+            <path d="M22 50 q16 -8 38 0" fill="#ffcfe6"/>
+            <text x="50" y="24" font-size="18" text-anchor="middle">🤗</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="label">One Hug</div>
+      <div class="caption">A warm hug — tap to open</div>
+
+      <div class="reveal" aria-hidden="true">
+        <!-- Cartoon hugging couple (inline SVG created to match your request) -->
+        <div style="max-width:360px;margin:0 auto;">
+          <svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="max-width:100%;height:auto;">
+            <!-- background hearts -->
+            <g opacity="0.12" transform="translate(30,10) scale(1.1)" fill="#ff9ccf">
+              <path d="M20 30 C20 10 60 10 60 30 C60 50 40 58 30 72 C20 58 0 50 0 30 C0 10 40 10 40 30 Z"/>
+            </g>
+            <!-- girl -->
+            <g transform="translate(140,40)">
+              <circle cx="-40" cy="40" r="28" fill="#ffe7b8"/>
+              <rect x="-74" y="70" width="70" height="64" rx="12" fill="#ffd6e9"/>
+              <path d="M-60 92 q20 -10 40 0" fill="#ffcfe6"/>
+            </g>
+            <!-- boy -->
+            <g transform="translate(220,40)">
+              <circle cx="-40" cy="40" r="28" fill="#ffd7c9"/>
+              <rect x="-74" y="70" width="70" height="64" rx="12" fill="#d7e7ff"/>
+              <path d="M-60 92 q20 -10 40 0" fill="#d0e0ff"/>
+            </g>
+            <!-- hugging arms (simple) -->
+            <path d="M135 120 q25 -20 60 -6 q20 -6 40 6" stroke="#f7c8d9" stroke-width="10" stroke-linecap="round" fill="none" />
+            <path d="M170 120 q20 10 48 10" stroke="#f7c8d9" stroke-width="10" stroke-linecap="round" fill="none" />
+            <!-- small hearts over -->
+            <g fill="#ff6ea3">
+              <path d="M170 38 q8 -10 18 0 q8 -10 18 0 q-8 12 -18 18 q-10 -6 -18 -18z"/>
+              <path d="M210 24 q6 -8 14 0 q6 -8 14 0 q-6 9 -14 13 q-8 -4 -14 -13z" opacity="0.9"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="msg">A warm cartoon hug — boy & girl embracing, with floating hearts 💞</div>
+      </div>
+    </div>
+
+  
+
+      
+
+  </div>
+
+  <div style="margin-top:20px;">
+    <div class="note">Tap a gift box to open — they will stay open ✨</div>
+  </div>
+</div>
+<a href="Page6.html">
+  <button style="background-color: #cfa8ff; color: white; padding: 10px 25px; border: none; border-radius: 12px; cursor: pointer; font-size: 17px; box-shadow: 0 0 10px #e0b3ff; transition: 0.3s;">
+    Next ➜
+  </button>
+</a>
+<script>
+  // helper to create sparkles randomly (background)
+  const sparkCount = 14;
+  for(let i=0;i<sparkCount;i++){
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.style.left = Math.random()*100 + 'vw';
+    s.style.top = Math.random()*92 + 'vh';
+    s.style.width = (Math.random()*6 + 4) + 'px';
+    s.style.height = s.style.width;
+    s.style.animationDuration = (4 + Math.random()*5) + 's';
+    s.style.opacity = (0.4 + Math.random()*0.6);
+    document.body.appendChild(s);
+  }
+
+  // open/keep-open logic for gifts
+  const gifts = document.querySelectorAll('.gift');
+  gifts.forEach(g => {
+    const reveal = g.querySelector('.reveal');
+    g.addEventListener('click', (e)=>{
+      // open and keep open
+      if(!g.classList.contains('open')){
+        g.classList.add('open');
+        reveal.setAttribute('aria-hidden','false');
+        g.setAttribute('aria-pressed','true');
+        // small heart burst
+        tinyHeartBurst(g);
+      }
+      // if already open, do nothing (stays open)
+    });
+
+    // keyboard accessibility
+    g.addEventListener('keydown', (ev)=>{
+      if(ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); g.click(); }
+    });
+  });
+
+  function tinyHeartBurst(el){
+    for(let i=0;i<8;i++){
+      const h = document.createElement('div');
+      h.className = 'heart-burst';
+      h.innerHTML = '❤';
+      h.style.left = (el.getBoundingClientRect().left + el.offsetWidth*0.5 + (Math.random()*120-60)) + 'px';
+      h.style.top = (el.getBoundingClientRect().top + el.offsetHeight*0.2 + (Math.random()*40-20)) + 'px';
+      h.style.fontSize = (10 + Math.random()*18) + 'px';
+      h.style.opacity = 0.95;
+      document.body.appendChild(h);
+      // animate upward then fade
+      setTimeout(()=> {
+        h.style.transform = 'translateY(-120px) rotate(' + (Math.random()*80-40) + 'deg)';
+        h.style.opacity = 0;
+      }, 20);
+      setTimeout(()=> h.remove(), 1100);
+    }
+  }
+
+  // NOTE: Bike and burger images are placeholders in HTML.
+  // Replace 'REPLACE_WITH_BIKE_IMAGE_URL' and 'REPLACE_WITH_BURGER_IMAGE_URL' with actual image URLs.
+  // Example: document.getElementById('bikeImg').src = 'https://yourhost.com/images/bike.jpg';
+
+  // If background music from Page 2 is available as a global audio element (e.g., id="bgMusic"),
+  // this page will not interrupt it. If you want a short pop sound on open, enable below:
+  /*
+  function playPop(){
+    const pop = new Audio('path_to_pop_sound.mp3');
+    pop.volume = 0.6;
+    pop.play().catch(()=>{ /* autoplay may be blocked on some browsers * / });
+  }
+  // call playPop() inside tinyHeartBurst when a gift opens if desired.
+  */
+
+</script>
+
+</body>
+</html>

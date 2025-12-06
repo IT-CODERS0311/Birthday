@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mission Birthday 💜 Poem</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(to bottom right, lavender, #ffd6ec, #fddde6);
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    .poem-box {
+      width: 80%;
+      max-width: 600px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(180,120,255,0.4);
+      padding: 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    .line {
+      font-size: 1.3rem;
+      color: #4b0082;
+      margin: 10px 0;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .next-btn {
+      margin-top: 40px;
+      background: #a75ff0;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px #d8a7ff;
+      transition: 0.3s;
+    }
+
+    .next-btn:hover {
+      background: #c180ff;
+      box-shadow: 0 0 15px #d8a7ff, 0 0 25px #e8b5ff;
+    }
+
+    /* Floating sparkles */
+    .sparkle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: sparkle 3s infinite ease-in-out;
+    }
+
+    @keyframes sparkle {
+      0%,100% { transform: scale(0.5); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio autoplay loop id="bgm">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3a0e1b99f3.mp3?filename=romantic-piano-ambient-14021.mp3" type="audio/mpeg">
+  </audio>
+  <button onclick="toggleMusic()" style="position:absolute;top:15px;right:15px;background:#a75ff0;color:white;border:none;padding:8px 15px;border-radius:20px;">🔇/🔊</button>
+
+  <div class="poem-box" id="poemBox"></div>
+
+  <button class="next-btn" onclick="window.location.href='Page7ne.html'">Next 🎁</button>
+
+  <script>
+    // Poem lines
+    const lines = [
+      "A= are you angel because everything feels like heaven when you are around me 💫",
+      "B= baby your smile should declare illegal ,its stealing my heart  🌸",
+      "C= can i keep you forever because you are my favourite chapter of my life 💜",
+      "D= do you have a map because i keep losting in your eyes ✨",
+    "Happiest birthday to the best part of my life my lifeline"
+    ];
+
+    const poemBox = document.getElementById('poemBox');
+
+    // Show lines one by one
+    lines.forEach((text, i) => {
+      setTimeout(() => {
+        const line = document.createElement('div');
+        line.className = 'line';
+        line.style.animationDelay = '0s';
+        line.textContent = text;
+        poemBox.appendChild(line);
+      }, i * 2000); // delay 2s per line
+    });
+
+    // Floating sparkles
+    for (let i = 0; i < 50; i++) {
+      const s = document.createElement('div');
+      s.classList.add('sparkle');
+      s.style.left = Math.random() * 100 + 'vw';
+      s.style.top = Math.random() * 100 + 'vh';
+      s.style.animationDuration = (2 + Math.random() * 3) + 's';
+      document.body.appendChild(s);
+    }
+
+    // Music toggle
+    function toggleMusic() {
+      const bgm = document.getElementById('bgm');
+      bgm.paused ? bgm.play() : bgm.pause();
+    }
+  </script>
+
+</body>
+</html>
